@@ -36,7 +36,7 @@ export class CreateTaskDto {
 
   @ApiPropertyOptional({
     enum: Status,
-    default: Status.PENDING,
+    default: Status.CREATED,
     description: 'Current status of the task',
   })
   @IsOptional()
