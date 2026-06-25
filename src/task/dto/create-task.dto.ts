@@ -5,6 +5,7 @@ import {
   MinLength,
   MaxLength,
   IsEnum,
+  IsNumber,
 } from 'class-validator';
 import { Priority, Status } from '../types';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -51,8 +52,6 @@ export class CreateTaskDto {
     description: 'Priority level of the task',
   })
   @IsOptional()
-  @IsEnum(Priority, {
-    message: 'Priority must be one of: low, medium, high',
-  })
-  priority?: Priority = Priority.MEDIUM;
+  @IsNumber()
+  priorityId?: number;
 }

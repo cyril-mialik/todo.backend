@@ -3,10 +3,12 @@ import {
   CreateDateColumn,
   Entity,
   Generated,
+  ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Priority, Status } from '../types';
+import { Status } from '../types';
+import { PriorityEntity } from 'src/priority/entities/priotiry.entity';
 
 @Entity({ name: 'tasks' })
 export class TaskEntity {
@@ -33,12 +35,8 @@ export class TaskEntity {
   })
   status!: Status;
 
-  @Column({
-    type: 'enum',
-    enum: Priority,
-    default: Priority.MEDIUM,
-  })
-  priority!: Priority;
+  @ManyToOne(() => PriorityEntity, { nullable: true })
+  priority!: PriorityEntity;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
