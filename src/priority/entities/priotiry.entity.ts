@@ -1,16 +1,17 @@
+import type { Priority } from 'src/common/types';
 import { TaskEntity } from 'src/task/entities/task.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   OneToMany,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity({ name: 'priorities' })
 export class PriorityEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id!: number;
 
   @Column({
@@ -18,7 +19,7 @@ export class PriorityEntity {
     length: 128,
     unique: true,
   })
-  name!: string;
+  name!: Priority;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;

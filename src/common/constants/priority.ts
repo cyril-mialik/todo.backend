@@ -7,3 +7,5 @@ export const PRIORITIES = {
   MEDIUM: MEDIUM_PRIORITY,
   HIGH: HIGH_PRIORITY,
 } as const;
+
+export const DEFAULT_PRIORITY = PRIORITIES.MEDIUM;
