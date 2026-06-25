@@ -13,7 +13,7 @@ export function getTypeOrmConfig(
     password: configService.getOrThrow<string>('POSTGRES_PASSWORD'),
     database: configService.getOrThrow<string>('POSTGRES_DB'),
     entities: [join(__dirname, '..', '**', '*.entity{.ts,.js}')],
-    migrations: [join(__dirname, '..', 'migrations', '*{.ts,.js}')],
+    migrations: [join(__dirname, '..', 'migrations/', '*{.ts,.js}')],
     migrationsRun: false,
     synchronize: configService.get<string>('NODE_ENV') === 'development',
     logging: configService.get<string>('NODE_ENV') === 'development',

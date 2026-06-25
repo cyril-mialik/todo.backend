@@ -17,7 +17,7 @@ export default new DataSource({
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: process.env.POSTGRES_DB || 'todo',
   entities: [join(__dirname, '..', '**', '*.entity{.ts,.js}')],
-  migrations: [join(__dirname, '..', 'common', 'migrations', '*{.ts,.js}')],
-  synchronize: false,
-  logging: true,
+  migrations: [join(__dirname, '..', 'common/migrations', '*{.ts,.js}')],
+  synchronize: process.env.NODE_ENV === 'development',
+  logging: process.env.NODE_ENV === 'development',
 });
