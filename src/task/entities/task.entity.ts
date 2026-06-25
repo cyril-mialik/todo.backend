@@ -6,6 +6,8 @@ import {
   ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Status } from '../types';
 import { PriorityEntity } from 'src/priority/entities/priotiry.entity';
@@ -36,6 +38,7 @@ export class TaskEntity {
   status!: Status;
 
   @ManyToOne(() => PriorityEntity, { nullable: true })
+  @JoinColumn({ name: 'priority_id' })
   priority!: PriorityEntity;
 
   @CreateDateColumn({ name: 'created_at' })

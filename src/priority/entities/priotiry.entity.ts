@@ -1,3 +1,4 @@
+import type { Priority } from 'src/common/types';
 import { TaskEntity } from 'src/task/entities/task.entity';
 import {
   Column,
@@ -18,7 +19,7 @@ export class PriorityEntity {
     length: 128,
     unique: true,
   })
-  name!: string;
+  name!: Priority;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
