@@ -22,12 +22,15 @@ export class TaskService {
   ) {}
 
   async findAll(): Promise<TaskEntity[]> {
-    return await this.taskRepository.find();
+    return await this.taskRepository.find({
+      relations: { priority: true, status: true },
+    });
   }
 
   async findById(id: string): Promise<TaskEntity> {
     const task = await this.taskRepository.findOne({
       where: { id },
+      relations: { priority: true, status: true },
     });
 
     if (!task) {
