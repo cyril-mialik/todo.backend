@@ -45,7 +45,8 @@ services:
   #   ports:
   #     - '${PORT}:${PORT}'
   #   depends_on:
-  #     - postgres
+  #     postgres:
+  #       condition: service_healthy
   #   restart: unless-stopped
 
 volumes:
