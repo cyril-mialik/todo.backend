@@ -4,11 +4,9 @@ import {
   IsOptional,
   MinLength,
   MaxLength,
-  IsEnum,
   IsNumber,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { DEFAULT_STATUS } from 'src/common/constants/status';
 
 export class CreateTaskDto {
   @ApiProperty({

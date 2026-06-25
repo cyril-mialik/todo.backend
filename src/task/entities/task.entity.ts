@@ -31,11 +31,11 @@ export class TaskEntity {
 
   @ManyToOne(() => PriorityEntity, { nullable: true })
   @JoinColumn({ name: 'priority_id' })
-  priority!: PriorityEntity;
+  priority!: PriorityEntity | null;
 
   @ManyToOne(() => StatusEntity, { nullable: true })
   @JoinColumn({ name: 'status_id' })
-  status!: StatusEntity;
+  status!: StatusEntity | null;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;

@@ -4,12 +4,21 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TaskEntity } from './entities/task.entity';
 import { Repository } from 'typeorm';
+import { DEFAULT_PRIORITY, DEFAULT_STATUS } from 'src/common/constants';
+import { PriorityEntity } from 'src/priority/entities/priotiry.entity';
+import { StatusEntity } from 'src/status/entities/status.entity';
 
 @Injectable()
 export class TaskService {
   constructor(
     @InjectRepository(TaskEntity)
     private readonly taskRepository: Repository<TaskEntity>,
+
+    @InjectRepository(PriorityEntity)
+    private readonly priorityRepository: Repository<PriorityEntity>,
+
+    @InjectRepository(StatusEntity)
+    private readonly statusRepository: Repository<StatusEntity>,
   ) {}
 
   async findAll(): Promise<TaskEntity[]> {
@@ -30,6 +39,14 @@ export class TaskService {
 
   async create(dto: CreateTaskDto): Promise<TaskEntity> {
     const task = this.taskRepository.create(dto);
+
+    task.priority ??= await this.priorityRepository.findOne({
+      where: { name: DEFAULT_PRIORITY },
+    });
+
+    task.status ??= await this.statusRepository.findOne({
+      where: { name: DEFAULT_STATUS },
+    });
 
     return await this.taskRepository.save(task);
   }
