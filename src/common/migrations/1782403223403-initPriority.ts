@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
-import { PRIORITIES } from '../constants';
+import { DEFAULT_PRIORITY, PRIORITIES } from '../constants';
 
 export class InitPriority1782403223403 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -12,6 +12,8 @@ export class InitPriority1782403223403 implements MigrationInterface {
             name: 'id',
             type: 'serial',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'name',
@@ -76,7 +78,7 @@ export class InitPriority1782403223403 implements MigrationInterface {
       // Устанавливаем приоритет по умолчанию (medium)
       await queryRunner.query(`
         UPDATE tasks
-        SET priority_id = (SELECT id FROM priorities WHERE name = 'medium')
+        SET priority_id = (SELECT id FROM priorities WHERE name = '${DEFAULT_PRIORITY}')
         WHERE priority_id IS NULL;
       `);
 

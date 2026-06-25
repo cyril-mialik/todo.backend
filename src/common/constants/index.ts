@@ -3,6 +3,7 @@ export {
   LOW_PRIORITY,
   MEDIUM_PRIORITY,
   HIGH_PRIORITY,
+  DEFAULT_PRIORITY,
 } from './priority';
 
 export {
@@ -11,4 +12,5 @@ export {
   PROGRESS_STATUS,
   COMPLETED_STATUS,
   CREATED_STATUS,
+  DEFAULT_STATUS,
 } from './status';
