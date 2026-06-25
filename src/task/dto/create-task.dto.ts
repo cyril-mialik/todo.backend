@@ -7,11 +7,12 @@ import {
   IsEnum,
   IsNumber,
 } from 'class-validator';
-import { Priority, Status } from '../types';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { DEFAULT_STATUS } from 'src/common/constants/status';
 
 export class CreateTaskDto {
   @ApiProperty({
+    type: String,
     example: 'My Task Title',
     description: 'Title of the task',
     minLength: 3,
@@ -24,6 +25,7 @@ export class CreateTaskDto {
   title: string = 'A new task';
 
   @ApiProperty({
+    type: String,
     example: 'Detailed description of the task',
     description: 'Description of the task',
     minLength: 10,
@@ -36,19 +38,15 @@ export class CreateTaskDto {
   description: string = 'A new description';
 
   @ApiPropertyOptional({
-    enum: Status,
-    default: Status.CREATED,
+    type: String,
     description: 'Current status of the task',
   })
   @IsOptional()
-  @IsEnum(Status, {
-    message: 'Status must be one of: pending, progress, completed, cancelled',
-  })
-  status?: Status = Status.CREATED;
+  @IsNumber()
+  statusId?: number;
 
   @ApiPropertyOptional({
-    enum: Priority,
-    default: Priority.MEDIUM,
+    type: String,
     description: 'Priority level of the task',
   })
   @IsOptional()

@@ -8,8 +8,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Status } from '../types';
 import { PriorityEntity } from 'src/priority/entities/priotiry.entity';
+import { StatusEntity } from 'src/status/entities/status.entity';
 
 @Entity({ name: 'tasks' })
 export class TaskEntity {
@@ -29,16 +29,13 @@ export class TaskEntity {
   })
   description?: string;
 
-  @Column({
-    type: 'enum',
-    enum: Status,
-    default: Status.CREATED,
-  })
-  status!: Status;
-
   @ManyToOne(() => PriorityEntity, { nullable: true })
   @JoinColumn({ name: 'priority_id' })
   priority!: PriorityEntity;
+
+  @ManyToOne(() => StatusEntity, { nullable: true })
+  @JoinColumn({ name: 'status_id' })
+  status!: StatusEntity;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
