@@ -9,5 +9,6 @@ import { PriorityEntity } from './entities/priotiry.entity';
   imports: [TypeOrmModule.forFeature([TaskEntity, PriorityEntity])],
   controllers: [PriorityController],
   providers: [PriorityService],
+  exports: [PriorityService],
 })
 export class PriorityModule {}

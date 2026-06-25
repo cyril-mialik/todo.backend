@@ -9,5 +9,6 @@ import { StatusEntity } from './entities/status.entity';
   imports: [TypeOrmModule.forFeature([TaskEntity, StatusEntity])],
   controllers: [StatusController],
   providers: [StatusService],
+  exports: [StatusService],
 })
 export class StatusModule {}
